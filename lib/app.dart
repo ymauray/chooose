@@ -11,7 +11,7 @@ class App extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        primarySwatch: Colors.yellow,
       ),
       home: const HomePage(),
     );
