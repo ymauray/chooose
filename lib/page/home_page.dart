@@ -12,6 +12,8 @@ class HomePage extends ConsumerWidget {
     final asyncItems = ref.watch(itemsProvider);
     final items = asyncItems.valueOrNull;
 
+    final max = items?.firstOrNull?.ranking;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Choooose'),
@@ -29,7 +31,8 @@ class HomePage extends ConsumerWidget {
         ],
       ),
       body: ListView.separated(
-        itemBuilder: (context, index) => ItemCard(item: items![index]),
+        itemBuilder: (context, index) =>
+            ItemCard(item: items![index], max: max!),
         separatorBuilder: (context, index) => const Divider(
           height: 1,
         ),

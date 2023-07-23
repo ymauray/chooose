@@ -59,7 +59,7 @@ class ItemCard extends ConsumerWidget {
       child: ListTile(
         title: Text(item.label),
         trailing: Text(
-          '${item.ranking}',
+          '${100 * item.ranking ~/ max} %',
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
