@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chooose/app.dart';
 import 'package:chooose/firebase_options.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -9,17 +11,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  if (!Platform.isLinux) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
 
-  await FirebaseAppCheck.instance.activate(
-    androidProvider: AndroidProvider.debug,
-    appleProvider: AppleProvider.appAttest,
-  );
+    await FirebaseAppCheck.instance.activate(
+      androidProvider: AndroidProvider.debug,
+      appleProvider: AppleProvider.appAttest,
+    );
 
-  final analytics = FirebaseAnalytics.instance;
-  await analytics.logAppOpen();
+    final analytics = FirebaseAnalytics.instance;
+    await analytics.logAppOpen();
+  }
 
   runApp(
     const ProviderScope(
