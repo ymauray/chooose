@@ -24,8 +24,12 @@ class SortPage extends ConsumerWidget {
           Navigator.of(context).pop();
         }
       },
-      child: Text(
-        sortStateNotifier.a.label,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        child: Text(
+          sortStateNotifier.a.label,
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
       ),
     );
 
@@ -36,8 +40,12 @@ class SortPage extends ConsumerWidget {
           Navigator.of(context).pop();
         }
       },
-      child: Text(
-        sortStateNotifier.b.label,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        child: Text(
+          sortStateNotifier.b.label,
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
       ),
     );
 
@@ -57,14 +65,45 @@ class SortPage extends ConsumerWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: Text('Step ${sortState.step} of ${sortState.steps}')),
-          const Divider(),
+          Center(
+            child: Text(
+              'Etape ${sortState.step} de ${sortState.steps}',
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(16),
+            child: Divider(),
+          ),
+          Center(
+            child: Text(
+              'Vous préférez :',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
           Center(
             child: reverse ? buttonB : buttonA,
           ),
-          const Center(child: Text('versus')),
+          const SizedBox(
+            height: 16,
+          ),
+          Center(
+            child: Text(
+              'ou',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
           Center(
             child: reverse ? buttonA : buttonB,
+          ),
+          const SizedBox(
+            height: 16,
           ),
         ],
       ),

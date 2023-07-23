@@ -6,10 +6,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class ItemCard extends ConsumerWidget {
   const ItemCard({
     required this.item,
+    required this.max,
     super.key,
   });
 
   final Item item;
+  final int max;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,7 +26,7 @@ class ItemCard extends ConsumerWidget {
             Padding(
               padding: EdgeInsets.all(8),
               child: Text(
-                'Delete',
+                'Supprimer',
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -39,16 +41,16 @@ class ItemCard extends ConsumerWidget {
       confirmDismiss: (direction) async => showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text('Delete item'),
-          content: const Text('Are you sure you want to delete this item?'),
+          title: const Text('Supprimer cet élément ?'),
+          content: const Text('Cette action est irréversible.'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),
-              child: const Text('Cancel'),
+              child: const Text('Annuler'),
             ),
             TextButton(
               onPressed: () => Navigator.of(context).pop(true),
-              child: const Text('Delete'),
+              child: const Text('Supprimer'),
             ),
           ],
         ),

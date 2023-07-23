@@ -40,7 +40,7 @@ class HomePage extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async => showForm(context, ref),
-        tooltip: 'Increment',
+        tooltip: 'Ajouter un élément',
         child: const Icon(Icons.add),
       ),
     );
@@ -52,24 +52,27 @@ class HomePage extends ConsumerWidget {
       builder: (context) {
         final controller = TextEditingController();
         return AlertDialog(
-          title: const Text('Add item'),
+          title: const Text('Ajouter un élément'),
           content: TextField(
+            autofocus: true,
             controller: controller,
             decoration: const InputDecoration(
-              hintText: 'Enter item name',
+              hintText: "Nom de l'élément",
             ),
+            keyboardType: TextInputType.name,
+            textCapitalization: TextCapitalization.sentences,
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
+              child: const Text('Annuler'),
             ),
             TextButton(
               onPressed: () {
                 ref.read(itemsProvider.notifier).addItem(controller.text);
                 Navigator.of(context).pop();
               },
-              child: const Text('Add'),
+              child: const Text('Ajouter'),
             ),
           ],
         );
