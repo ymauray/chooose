@@ -9,7 +9,7 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Chooose',
       theme: ThemeData(
         primarySwatch: Colors.yellow,
       ),

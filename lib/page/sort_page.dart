@@ -44,7 +44,7 @@ class SortPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Chooose - Sort'),
+        title: const Text('Choooose - Sort'),
         actions: [
           IconButton(
             onPressed: () {

@@ -14,7 +14,7 @@ class HomePage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chooose'),
+        title: const Text('Choooose'),
         actions: [
           IconButton(
             onPressed: () {
