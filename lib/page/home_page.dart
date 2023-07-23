@@ -24,7 +24,7 @@ class HomePage extends ConsumerWidget {
                 ),
               );
             },
-            icon: const Icon(Icons.sort),
+            icon: const Icon(Icons.play_arrow),
           ),
         ],
       ),
