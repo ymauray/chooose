@@ -1,0 +1,16 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.organizeImports": true,
+    },
+    "cmake.sourceDirectory": "${workspaceFolder}/linux",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": ".dart_tool/sqflite_common_ffi/databases/freelanceplus.db",
+            "name": "Freelance+"
+        }
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
+}
