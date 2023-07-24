@@ -13,7 +13,10 @@ class App extends ConsumerWidget {
       theme: ThemeData(
         primarySwatch: Colors.yellow,
       ),
-      home: const HomePage(),
+      routes: {
+        '/': (context) => const OnboardingPage(),
+        '/home': (context) => const HomePage(),
+      },
     );
   }
 }

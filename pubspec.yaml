@@ -39,6 +39,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: false
+  assets:
+    - assets/img/
 
 flutter_launcher_icons:
   android: "launcher_icon"
