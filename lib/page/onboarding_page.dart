@@ -1,3 +1,4 @@
+import 'package:chooose/l10n/l10n_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -18,7 +19,7 @@ class OnboardingPage extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.all(8),
             child: Text(
-              "Envie d'un drone et d'une serrure connectée ?",
+              context.t.onboarding1,
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
@@ -29,7 +30,7 @@ class OnboardingPage extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.all(8),
             child: Text(
-              "Envie d'aller en Ecosse et en Alaska ?",
+              context.t.onboarding2,
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
@@ -40,7 +41,7 @@ class OnboardingPage extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.all(8),
             child: Text(
-              'Envie de demander une poupée et une tablette au Père Noël ?',
+              context.t.onboarding3,
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
@@ -51,8 +52,7 @@ class OnboardingPage extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.all(8),
             child: Text(
-              "Ajouter ce que vous voulez dans l'app, et laissez-vous guider "
-              'pour trier vos envies par ordre de priorité !',
+              context.t.onboarding4,
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),

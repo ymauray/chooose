@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:chooose/l10n/l10n_extension.dart';
 import 'package:chooose/model/item.dart';
 import 'package:chooose/provider/sort_state_notifier_provider.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,7 @@ class SortPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Choooose - Sort'),
+        title: Text('Choooose - ${context.t.sort}'),
         actions: [
           IconButton(
             onPressed: () {
@@ -67,7 +68,7 @@ class SortPage extends ConsumerWidget {
         children: [
           Center(
             child: Text(
-              'Etape ${sortState.step} de ${sortState.steps}',
+              context.t.steps(sortState.step, sortState.steps),
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
@@ -77,7 +78,7 @@ class SortPage extends ConsumerWidget {
           ),
           Center(
             child: Text(
-              'Vous préférez :',
+              context.t.youPrefer,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
@@ -92,7 +93,7 @@ class SortPage extends ConsumerWidget {
           ),
           Center(
             child: Text(
-              'ou',
+              context.t.or,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),

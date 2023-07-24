@@ -1,0 +1,17 @@
+{
+    "delete": "Supprimer",
+    "deleteThisElement": "Supprimer cet élément ?",
+    "addElement": "Ajouter un élément",
+    "elementName": "Nom de l'élément",
+    "thisActionCannotBeUndone": "Cette action est irréversible.",
+    "cancel": "Annuler",
+    "add": "Ajouter",
+    "sort": "Trier",
+    "steps": "Étape {step} sur {steps}",
+    "youPrefer": "Vous préférez :",
+    "or": "ou",
+    "onboarding1": "Envie d'un drone et d'une serrure connectée ?",
+    "onboarding2": "Envie d'aller en Ecosse et en Alaska ?",
+    "onboarding3": "Envie de demander une poupée et une tablette au Père Noël ?",
+    "onboarding4": "Ajouter ce que vous voulez dans l'app, et laissez-vous guider pour trier vos envies par ordre de priorité !"
+}

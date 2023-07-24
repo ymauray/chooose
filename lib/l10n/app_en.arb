@@ -1,0 +1,17 @@
+{
+    "delete": "Delete",
+    "deleteThisElement": "Delete this element ?",
+    "addElement": "Add an element",
+    "elementName": "Element name",
+    "thisActionCannotBeUndone": "This action cannot be undone.",
+    "cancel": "Cancel",
+    "add": "Add",
+    "sort": "Sort",
+    "steps": "Step {step} of {steps}",
+    "youPrefer": "You prefer :",
+    "or": "or",
+    "onboarding1": "Want a drone and a connected lock?",
+    "onboarding2": "Want to go to Scotland and Alaska?",
+    "onboarding3": "Want to ask Santa for a doll and a tablet?",
+    "onboarding4": "Add what you want to the app, and let us help you sort your wishes in order of priority!"
+}

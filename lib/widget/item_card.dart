@@ -1,3 +1,4 @@
+import 'package:chooose/l10n/l10n_extension.dart';
 import 'package:chooose/model/item.dart';
 import 'package:chooose/provider/items_provider.dart';
 import 'package:flutter/material.dart';
@@ -18,16 +19,16 @@ class ItemCard extends ConsumerWidget {
     return Dismissible(
       key: ValueKey(item.label),
       direction: DismissDirection.endToStart,
-      background: const ColoredBox(
+      background: ColoredBox(
         color: Colors.red,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Text(
-                'Supprimer',
-                style: TextStyle(
+                context.t.delete,
+                style: const TextStyle(
                   color: Colors.white,
                 ),
               ),
@@ -41,16 +42,16 @@ class ItemCard extends ConsumerWidget {
       confirmDismiss: (direction) async => showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text('Supprimer cet élément ?'),
-          content: const Text('Cette action est irréversible.'),
+          title: Text(context.t.deleteThisElement),
+          content: Text(context.t.thisActionCannotBeUndone),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),
-              child: const Text('Annuler'),
+              child: Text(context.t.cancel),
             ),
             TextButton(
               onPressed: () => Navigator.of(context).pop(true),
-              child: const Text('Supprimer'),
+              child: Text(context.t.delete),
             ),
           ],
         ),

@@ -1,3 +1,4 @@
+import 'package:chooose/l10n/l10n_extension.dart';
 import 'package:chooose/page/sort_page.dart';
 import 'package:chooose/provider/items_provider.dart';
 import 'package:chooose/widget/item_card.dart';
@@ -40,7 +41,7 @@ class HomePage extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async => showForm(context, ref),
-        tooltip: 'Ajouter un élément',
+        tooltip: context.t.addElement,
         child: const Icon(Icons.add),
       ),
     );
@@ -52,12 +53,12 @@ class HomePage extends ConsumerWidget {
       builder: (context) {
         final controller = TextEditingController();
         return AlertDialog(
-          title: const Text('Ajouter un élément'),
+          title: Text(context.t.addElement),
           content: TextField(
             autofocus: true,
             controller: controller,
-            decoration: const InputDecoration(
-              hintText: "Nom de l'élément",
+            decoration: InputDecoration(
+              hintText: context.t.elementName,
             ),
             keyboardType: TextInputType.name,
             textCapitalization: TextCapitalization.sentences,
@@ -65,14 +66,14 @@ class HomePage extends ConsumerWidget {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Annuler'),
+              child: Text(context.t.cancel),
             ),
             TextButton(
               onPressed: () {
                 ref.read(itemsProvider.notifier).addItem(controller.text);
                 Navigator.of(context).pop();
               },
-              child: const Text('Ajouter'),
+              child: Text(context.t.add),
             ),
           ],
         );
