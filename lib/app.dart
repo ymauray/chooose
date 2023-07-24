@@ -1,4 +1,5 @@
 import 'package:chooose/page/home_page.dart';
+import 'package:chooose/page/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,7 +12,7 @@ class App extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       title: 'Chooose',
       theme: ThemeData(
-        primarySwatch: Colors.yellow,
+        primarySwatch: Colors.orange,
       ),
       routes: {
         '/': (context) => const OnboardingPage(),
