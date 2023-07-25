@@ -57,7 +57,7 @@ class Items extends _$Items {
         )
       ];
       writeItems(items);
-      return items;
+      return await readItems();
     });
   }
 
