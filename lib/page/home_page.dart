@@ -44,6 +44,7 @@ class HomePage extends ConsumerWidget {
             decoration: InputDecoration(
               labelText: context.t.name,
             ),
+            textCapitalization: TextCapitalization.sentences,
           ),
           actions: [
             TextButton(
