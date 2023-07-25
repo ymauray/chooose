@@ -1,25 +1,21 @@
 import 'package:chooose/l10n/l10n_extension.dart';
-import 'package:chooose/model/item.dart';
+import 'package:chooose/model/item_list.dart';
 import 'package:chooose/provider/item_lists_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ItemCard extends ConsumerWidget {
-  const ItemCard({
-    required this.label,
-    required this.item,
-    required this.max,
+class ListCard extends ConsumerWidget {
+  const ListCard({
+    required this.list,
     super.key,
   });
 
-  final String label;
-  final Item item;
-  final int max;
+  final ItemList list;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Dismissible(
-      key: ValueKey(item.label),
+      key: ValueKey(list.label),
       direction: DismissDirection.endToStart,
       background: ColoredBox(
         color: Colors.red,
@@ -59,14 +55,12 @@ class ItemCard extends ConsumerWidget {
         ),
       ),
       onDismissed: (direction) {
-        ref.read(itemListsProvider.notifier).removeItem(label, item);
+        ref.read(itemListsProvider.notifier).removeList(list);
       },
       child: ListTile(
-        title: Text(item.label),
-        trailing: Text(
-          '${100 * item.ranking ~/ max} %',
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+        title: Text(list.label),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => Navigator.of(context).pushNamed('/list', arguments: list),
       ),
     );
   }

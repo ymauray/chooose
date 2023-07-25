@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:chooose/model/item.dart';
 import 'package:chooose/model/pair.dart';
 import 'package:chooose/model/sort_state.dart';
-import 'package:chooose/provider/items_provider.dart';
+import 'package:chooose/provider/item_lists_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'sort_state_notifier_provider.g.dart';
@@ -15,7 +15,7 @@ class SortStateNotifier extends _$SortStateNotifier {
   late Pair currentPair;
 
   @override
-  SortState build(List<Item> items) {
+  SortState build(String label, List<Item> items) {
     for (final item in items) {
       item.score = 0;
     }
@@ -31,6 +31,7 @@ class SortStateNotifier extends _$SortStateNotifier {
         step: 0,
         steps: pairs.length,
         pairs: pairs,
+        label: label,
         items: items,
       ),
     );
@@ -84,7 +85,10 @@ class SortStateNotifier extends _$SortStateNotifier {
     for (final item in state.items) {
       item.ranking += item.score;
     }
-    await ref.read(itemsProvider.notifier).writeItems(state.items);
-    await ref.read(itemsProvider.notifier).refresh();
+    //await ref.read(itemsProvider.notifier).writeItems(state.items);
+    //await ref.read(itemsProvider.notifier).refresh();
+    await ref
+        .read(itemListsProvider.notifier)
+        .refresh(state.label, state.items);
   }
 }

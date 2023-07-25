@@ -1,7 +1,6 @@
 import 'package:chooose/l10n/l10n_extension.dart';
-import 'package:chooose/page/sort_page.dart';
-import 'package:chooose/provider/items_provider.dart';
-import 'package:chooose/widget/item_card.dart';
+import 'package:chooose/provider/item_lists_provider.dart';
+import 'package:chooose/widget/list_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,34 +9,19 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncItems = ref.watch(itemsProvider);
-    final items = asyncItems.valueOrNull;
-
-    final max = items?.firstOrNull?.ranking;
+    final asyncLists = ref.watch(itemListsProvider);
+    final lists = asyncLists.valueOrNull;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Choooose'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (context) => SortPage(items!),
-                ),
-              );
-            },
-            icon: const Icon(Icons.play_arrow),
-          ),
-        ],
+        title: Text(context.t.yourLists),
       ),
       body: ListView.separated(
-        itemBuilder: (context, index) =>
-            ItemCard(item: items![index], max: max!),
+        itemBuilder: (context, index) => ListCard(list: lists![index]),
         separatorBuilder: (context, index) => const Divider(
           height: 1,
         ),
-        itemCount: asyncItems.valueOrNull?.length ?? 0,
+        itemCount: asyncLists.valueOrNull?.length ?? 0,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async => showForm(context, ref),
@@ -53,24 +37,26 @@ class HomePage extends ConsumerWidget {
       builder: (context) {
         final controller = TextEditingController();
         return AlertDialog(
-          title: Text(context.t.addElement),
+          title: Text(context.t.addList),
           content: TextField(
             autofocus: true,
             controller: controller,
             decoration: InputDecoration(
-              hintText: context.t.elementName,
+              labelText: context.t.name,
             ),
-            keyboardType: TextInputType.name,
-            textCapitalization: TextCapitalization.sentences,
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () async {
+                Navigator.of(context).pop();
+              },
               child: Text(context.t.cancel),
             ),
             TextButton(
-              onPressed: () {
-                ref.read(itemsProvider.notifier).addItem(controller.text);
+              onPressed: () async {
+                await ref
+                    .read(itemListsProvider.notifier)
+                    .addList(controller.text);
                 Navigator.of(context).pop();
               },
               child: Text(context.t.add),

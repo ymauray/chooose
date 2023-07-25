@@ -7,15 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SortPage extends ConsumerWidget {
-  const SortPage(this.items, {super.key});
+  const SortPage(this.label, this.items, {super.key});
 
+  final String label;
   final List<Item> items;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final sortState = ref.watch(sortStateNotifierProvider(items));
+    final sortState = ref.watch(sortStateNotifierProvider(label, items));
     final sortStateNotifier =
-        ref.watch(sortStateNotifierProvider(items).notifier);
+        ref.watch(sortStateNotifierProvider(label, items).notifier);
     final reverse = Random().nextBool();
 
     final buttonA = ElevatedButton(

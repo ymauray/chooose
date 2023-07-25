@@ -1,4 +1,5 @@
 import 'package:chooose/page/home_page.dart';
+import 'package:chooose/page/list_page.dart';
 import 'package:chooose/page/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -35,6 +36,7 @@ class App extends ConsumerWidget {
       ),
       routes: {
         '/home': (context) => const HomePage(),
+        '/list': (context) => const ListPage(),
       },
     );
   }

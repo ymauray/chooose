@@ -10,6 +10,7 @@ class SortState with _$SortState {
     required int step,
     required int steps,
     required List<Pair> pairs,
+    required String label,
     required List<Item> items,
   }) = _SortState;
 }

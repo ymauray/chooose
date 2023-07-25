@@ -19,6 +19,7 @@ mixin _$SortState {
   int get step => throw _privateConstructorUsedError;
   int get steps => throw _privateConstructorUsedError;
   List<Pair> get pairs => throw _privateConstructorUsedError;
+  String get label => throw _privateConstructorUsedError;
   List<Item> get items => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +32,8 @@ abstract class $SortStateCopyWith<$Res> {
   factory $SortStateCopyWith(SortState value, $Res Function(SortState) then) =
       _$SortStateCopyWithImpl<$Res, SortState>;
   @useResult
-  $Res call({int step, int steps, List<Pair> pairs, List<Item> items});
+  $Res call(
+      {int step, int steps, List<Pair> pairs, String label, List<Item> items});
 }
 
 /// @nodoc
@@ -50,6 +52,7 @@ class _$SortStateCopyWithImpl<$Res, $Val extends SortState>
     Object? step = null,
     Object? steps = null,
     Object? pairs = null,
+    Object? label = null,
     Object? items = null,
   }) {
     return _then(_value.copyWith(
@@ -65,6 +68,10 @@ class _$SortStateCopyWithImpl<$Res, $Val extends SortState>
           ? _value.pairs
           : pairs // ignore: cast_nullable_to_non_nullable
               as List<Pair>,
+      label: null == label
+          ? _value.label
+          : label // ignore: cast_nullable_to_non_nullable
+              as String,
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
@@ -80,7 +87,8 @@ abstract class _$$_SortStateCopyWith<$Res> implements $SortStateCopyWith<$Res> {
       __$$_SortStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int step, int steps, List<Pair> pairs, List<Item> items});
+  $Res call(
+      {int step, int steps, List<Pair> pairs, String label, List<Item> items});
 }
 
 /// @nodoc
@@ -97,6 +105,7 @@ class __$$_SortStateCopyWithImpl<$Res>
     Object? step = null,
     Object? steps = null,
     Object? pairs = null,
+    Object? label = null,
     Object? items = null,
   }) {
     return _then(_$_SortState(
@@ -112,6 +121,10 @@ class __$$_SortStateCopyWithImpl<$Res>
           ? _value._pairs
           : pairs // ignore: cast_nullable_to_non_nullable
               as List<Pair>,
+      label: null == label
+          ? _value.label
+          : label // ignore: cast_nullable_to_non_nullable
+              as String,
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
@@ -127,6 +140,7 @@ class _$_SortState implements _SortState {
       {required this.step,
       required this.steps,
       required final List<Pair> pairs,
+      required this.label,
       required final List<Item> items})
       : _pairs = pairs,
         _items = items;
@@ -143,6 +157,8 @@ class _$_SortState implements _SortState {
     return EqualUnmodifiableListView(_pairs);
   }
 
+  @override
+  final String label;
   final List<Item> _items;
   @override
   List<Item> get items {
@@ -153,7 +169,7 @@ class _$_SortState implements _SortState {
 
   @override
   String toString() {
-    return 'SortState(step: $step, steps: $steps, pairs: $pairs, items: $items)';
+    return 'SortState(step: $step, steps: $steps, pairs: $pairs, label: $label, items: $items)';
   }
 
   @override
@@ -164,6 +180,7 @@ class _$_SortState implements _SortState {
             (identical(other.step, step) || other.step == step) &&
             (identical(other.steps, steps) || other.steps == steps) &&
             const DeepCollectionEquality().equals(other._pairs, _pairs) &&
+            (identical(other.label, label) || other.label == label) &&
             const DeepCollectionEquality().equals(other._items, _items));
   }
 
@@ -173,6 +190,7 @@ class _$_SortState implements _SortState {
       step,
       steps,
       const DeepCollectionEquality().hash(_pairs),
+      label,
       const DeepCollectionEquality().hash(_items));
 
   @JsonKey(ignore: true)
@@ -187,6 +205,7 @@ abstract class _SortState implements SortState {
       {required final int step,
       required final int steps,
       required final List<Pair> pairs,
+      required final String label,
       required final List<Item> items}) = _$_SortState;
 
   @override
@@ -195,6 +214,8 @@ abstract class _SortState implements SortState {
   int get steps;
   @override
   List<Pair> get pairs;
+  @override
+  String get label;
   @override
   List<Item> get items;
   @override

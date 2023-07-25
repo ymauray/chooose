@@ -6,7 +6,7 @@ part of 'sort_state_notifier_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sortStateNotifierHash() => r'ac7ea97fb22823439407108b4847fac038ca23ea';
+String _$sortStateNotifierHash() => r'742c0458ebb37dcf46b3baa9e1d1382d9359c059';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,9 +31,11 @@ class _SystemHash {
 
 abstract class _$SortStateNotifier
     extends BuildlessAutoDisposeNotifier<SortState> {
+  late final String label;
   late final List<Item> items;
 
   SortState build(
+    String label,
     List<Item> items,
   );
 }
@@ -49,9 +51,11 @@ class SortStateNotifierFamily extends Family<SortState> {
 
   /// See also [SortStateNotifier].
   SortStateNotifierProvider call(
+    String label,
     List<Item> items,
   ) {
     return SortStateNotifierProvider(
+      label,
       items,
     );
   }
@@ -61,6 +65,7 @@ class SortStateNotifierFamily extends Family<SortState> {
     covariant SortStateNotifierProvider provider,
   ) {
     return call(
+      provider.label,
       provider.items,
     );
   }
@@ -85,9 +90,12 @@ class SortStateNotifierProvider
     extends AutoDisposeNotifierProviderImpl<SortStateNotifier, SortState> {
   /// See also [SortStateNotifier].
   SortStateNotifierProvider(
+    this.label,
     this.items,
   ) : super.internal(
-          () => SortStateNotifier()..items = items,
+          () => SortStateNotifier()
+            ..label = label
+            ..items = items,
           from: sortStateNotifierProvider,
           name: r'sortStateNotifierProvider',
           debugGetCreateSourceHash:
@@ -99,16 +107,20 @@ class SortStateNotifierProvider
               SortStateNotifierFamily._allTransitiveDependencies,
         );
 
+  final String label;
   final List<Item> items;
 
   @override
   bool operator ==(Object other) {
-    return other is SortStateNotifierProvider && other.items == items;
+    return other is SortStateNotifierProvider &&
+        other.label == label &&
+        other.items == items;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, label.hashCode);
     hash = _SystemHash.combine(hash, items.hashCode);
 
     return _SystemHash.finish(hash);
@@ -119,6 +131,7 @@ class SortStateNotifierProvider
     covariant SortStateNotifier notifier,
   ) {
     return notifier.build(
+      label,
       items,
     );
   }
