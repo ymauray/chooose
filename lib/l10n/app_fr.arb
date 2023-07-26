@@ -15,5 +15,7 @@
     "onboarding1": "Envie d'un drone et d'une serrure connectée ?",
     "onboarding2": "Envie d'aller en Ecosse et en Alaska ?",
     "onboarding3": "Envie de demander une poupée et une tablette au Père Noël ?",
-    "onboarding4": "Ajouter ce que vous voulez dans l'app, et laissez-vous guider pour trier vos envies par ordre de priorité !"
+    "onboarding4": "Ajouter ce que vous voulez dans l'app, et laissez-vous guider pour trier vos envies par ordre de priorité !",
+    "onboardingLists": "Ajouter toutes vos listes de choix",
+    "onboardingElements": "Ajouter les éléments à trier"
 }
