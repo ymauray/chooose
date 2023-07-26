@@ -22,20 +22,20 @@ class ListPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/img/banner.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        backgroundColor: Colors.transparent,
         title: Text(list.label),
         actions: [
           IconButton(
-            onPressed: () {
-              if (items.isEmpty) {
-                return;
-              }
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (context) => SortPage(label, items),
-                ),
-              );
-            },
-            icon: const Icon(Icons.play_arrow),
+            onPressed: () async => await showForm(context, ref, list.label),
+            icon: const Icon(Icons.add),
           ),
         ],
       ),
@@ -56,10 +56,20 @@ class ListPage extends ConsumerWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async => showForm(context, ref, list.label),
-        tooltip: context.t.addElement,
-        child: const Icon(Icons.add),
+        onPressed: () {
+          if (items.isEmpty) {
+            return;
+          }
+          Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (context) => SortPage(label, items),
+            ),
+          );
+        },
+        tooltip: context.t.sort,
+        child: const Icon(Icons.play_arrow),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 

@@ -15,6 +15,21 @@ class HomePage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () async => showForm(context, ref),
+            icon: const Icon(Icons.add),
+          )
+        ],
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/img/banner.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        backgroundColor: Colors.transparent,
         title: Text(context.t.yourLists),
       ),
       body: Column(
@@ -34,11 +49,6 @@ class HomePage extends ConsumerWidget {
             ),
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async => showForm(context, ref),
-        tooltip: context.t.addElement,
-        child: const Icon(Icons.add),
       ),
     );
   }
