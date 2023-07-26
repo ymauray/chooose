@@ -86,7 +86,7 @@ class _Onboarding extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncLists = ref.watch(itemListsProvider);
+    ref.watch(itemListsProvider);
 
     return FutureBuilder(
       future: SharedPreferences.getInstance(),
