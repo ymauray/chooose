@@ -54,7 +54,7 @@ class SortPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Choooose - ${context.t.sort}'),
+        title: Text(context.t.sort),
         actions: [
           IconButton(
             onPressed: () {
