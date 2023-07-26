@@ -6,6 +6,39 @@ import 'package:chooose/provider/sort_state_notifier_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+class _ElevatedImageButton extends ConsumerWidget {
+  const _ElevatedImageButton({
+    required this.onPressed,
+    required this.label,
+  });
+
+  final VoidCallback? onPressed;
+  final String label;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ElevatedButton(
+      clipBehavior: Clip.antiAlias,
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(32)),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        child: Text(
+          label,
+          style: Theme.of(context)
+              .textTheme
+              .headlineMedium!
+              .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+  }
+}
+
 class SortPage extends ConsumerWidget {
   const SortPage(this.label, this.items, {super.key});
 
@@ -19,40 +52,29 @@ class SortPage extends ConsumerWidget {
         ref.watch(sortStateNotifierProvider(label, items).notifier);
     final reverse = Random().nextBool();
 
-    final buttonA = ElevatedButton(
+    final buttonA = _ElevatedImageButton(
       onPressed: () async {
         if (!sortStateNotifier.chooseA()) {
           await sortStateNotifier.finalize();
           Navigator.of(context).pop();
         }
       },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        child: Text(
-          sortStateNotifier.a.label,
-          style: Theme.of(context).textTheme.headlineLarge,
-        ),
-      ),
+      label: sortStateNotifier.a.label,
     );
 
-    final buttonB = ElevatedButton(
+    final buttonB = _ElevatedImageButton(
       onPressed: () async {
         if (!sortStateNotifier.chooseB()) {
           await sortStateNotifier.finalize();
           Navigator.of(context).pop();
         }
       },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        child: Text(
-          sortStateNotifier.b.label,
-          style: Theme.of(context).textTheme.headlineLarge,
-        ),
-      ),
+      label: sortStateNotifier.b.label,
     );
 
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         automaticallyImplyLeading: false,
         flexibleSpace: Container(
           decoration: const BoxDecoration(

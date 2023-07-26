@@ -22,6 +22,7 @@ class ListPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(

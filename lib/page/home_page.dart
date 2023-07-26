@@ -15,6 +15,7 @@ class HomePage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         actions: [
           IconButton(
             onPressed: () async => showForm(context, ref),
@@ -30,7 +31,9 @@ class HomePage extends ConsumerWidget {
           ),
         ),
         backgroundColor: Colors.transparent,
-        title: Text(context.t.yourLists),
+        title: Text(
+          context.t.yourLists,
+        ),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
