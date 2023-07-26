@@ -56,8 +56,15 @@ class ListPage extends ConsumerWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        foregroundColor: Colors.white,
         onPressed: () {
-          if (items.isEmpty) {
+          if (items.length < 2) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(context.t.needTwoElements),
+                backgroundColor: Colors.red,
+              ),
+            );
             return;
           }
           Navigator.of(context).push(
