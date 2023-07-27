@@ -62,6 +62,9 @@ class ItemForm extends ConsumerWidget {
         ),
         TextButton(
           onPressed: () {
+            if (nameController.text.isEmpty) {
+              return;
+            }
             if (item != null) {
               ref.read(itemListsProvider.notifier).updateItem(
                     listLabel,
