@@ -1,6 +1,7 @@
 import 'package:chooose/page/home_page.dart';
 import 'package:chooose/page/list_page.dart';
 import 'package:chooose/page/onboarding_page.dart';
+import 'package:chooose/page/tab_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,7 +27,7 @@ class App extends ConsumerWidget {
             if (prefs.getBool('onboarding') == null) {
               return const OnboardingPage();
             } else {
-              return const HomePage();
+              return TabPage();
             }
           } else {
             return Container();
