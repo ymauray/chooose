@@ -10,10 +10,12 @@ class _ElevatedImageButton extends ConsumerWidget {
   const _ElevatedImageButton({
     required this.onPressed,
     required this.label,
+    required this.description,
   });
 
   final VoidCallback? onPressed;
   final String label;
+  final String description;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,12 +29,29 @@ class _ElevatedImageButton extends ConsumerWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        child: Text(
-          label,
-          style: Theme.of(context)
-              .textTheme
-              .headlineMedium!
-              .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              label,
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineMedium!
+                  .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+            if (description.isNotEmpty) ...[
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
+                description,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: Colors.white),
+              ),
+            ],
+          ],
         ),
       ),
     );
@@ -53,6 +72,7 @@ class SortPage extends ConsumerWidget {
     final reverse = Random().nextBool();
 
     final buttonA = _ElevatedImageButton(
+      description: sortStateNotifier.a.description ?? context.t.noDescription,
       onPressed: () async {
         if (!sortStateNotifier.chooseA()) {
           await sortStateNotifier.finalize();
@@ -63,6 +83,7 @@ class SortPage extends ConsumerWidget {
     );
 
     final buttonB = _ElevatedImageButton(
+      description: sortStateNotifier.b.description ?? context.t.noDescription,
       onPressed: () async {
         if (!sortStateNotifier.chooseB()) {
           await sortStateNotifier.finalize();
