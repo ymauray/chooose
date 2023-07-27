@@ -64,8 +64,18 @@ class ItemCard extends ConsumerWidget {
         ref.read(itemListsProvider.notifier).removeItem(label, item);
       },
       child: ListTile(
+        onTap: () async {
+          await showDialog<void>(
+            context: context,
+            builder: (context) {
+              return ItemForm(label, item: item);
+            },
+          );
+        },
         leading: IconButton(
-          icon: const Icon(Icons.link),
+          icon: Icon(
+            (item.link ?? '').isNotEmpty ? Icons.cloud : Icons.cloud_outlined,
+          ),
           onPressed: (item.link ?? '').isNotEmpty
               ? () async {
                   final uri = Uri.parse(item.link!);
@@ -78,19 +88,9 @@ class ItemCard extends ConsumerWidget {
                   }
                 }
               : null,
-          color: Colors.blue,
+          color: Colors.orange,
         ),
-        title: GestureDetector(
-          onTap: () async {
-            await showDialog<void>(
-              context: context,
-              builder: (context) {
-                return ItemForm(label, item: item);
-              },
-            );
-          },
-          child: Text(item.label),
-        ),
+        title: Text(item.label),
         subtitle:
             item.description == null ? null : Text(item.description ?? ''),
         trailing: Text(
