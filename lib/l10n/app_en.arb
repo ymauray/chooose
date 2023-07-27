@@ -15,7 +15,7 @@
     "steps": "Step {step} of {steps}",
     "youPrefer": "You prefer :",
     "or": "or",
-    "yourLists": "Your lists",
+    "yourLists": "Lists",
     "couldNotOpenUrl": "Could not open url",
     "needTwoElements": "You need at least two elements to sort",
     "noDescription": "(No description)",

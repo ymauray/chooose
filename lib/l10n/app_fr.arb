@@ -15,7 +15,7 @@
     "steps": "Étape {step} sur {steps}",
     "youPrefer": "Vous préférez :",
     "or": "ou",
-    "yourLists": "Vos listes",
+    "yourLists": "Listes",
     "couldNotOpenUrl": "Impossible d'ouvrir le lien",
     "needTwoElements": "Vous devez ajouter au moins deux éléments.",
     "noDescription": "(Pas de description)",
