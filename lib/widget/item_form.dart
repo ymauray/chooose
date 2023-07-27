@@ -51,7 +51,7 @@ class ItemForm extends ConsumerWidget {
             decoration: InputDecoration(
               hintText: context.t.link,
             ),
-            textCapitalization: TextCapitalization.sentences,
+            keyboardType: TextInputType.url,
           ),
         ],
       ),
