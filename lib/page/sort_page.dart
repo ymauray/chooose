@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:chooose/l10n/l10n_extension.dart';
 import 'package:chooose/model/item.dart';
 import 'package:chooose/provider/sort_state_notifier_provider.dart';
+import 'package:chooose/widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -94,18 +95,8 @@ class SortPage extends ConsumerWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        foregroundColor: Colors.white,
+      appBar: CustomAppBar(
         automaticallyImplyLeading: false,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/img/banner.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        backgroundColor: Colors.transparent,
         title: Text(context.t.sort),
         actions: [
           IconButton(

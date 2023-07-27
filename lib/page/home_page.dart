@@ -1,5 +1,6 @@
 import 'package:chooose/l10n/l10n_extension.dart';
 import 'package:chooose/provider/item_lists_provider.dart';
+import 'package:chooose/widget/custom_app_bar.dart';
 import 'package:chooose/widget/list_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,23 +15,13 @@ class HomePage extends ConsumerWidget {
     final lists = asyncLists.valueOrNull;
 
     return Scaffold(
-      appBar: AppBar(
-        foregroundColor: Colors.white,
+      appBar: CustomAppBar(
         actions: [
           IconButton(
             onPressed: () async => showForm(context, ref),
             icon: const Icon(Icons.add),
           )
         ],
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/img/banner.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        backgroundColor: Colors.transparent,
         title: Text(
           context.t.yourLists,
         ),

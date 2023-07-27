@@ -2,6 +2,7 @@ import 'package:chooose/l10n/l10n_extension.dart';
 import 'package:chooose/model/item_list.dart';
 import 'package:chooose/page/sort_page.dart';
 import 'package:chooose/provider/item_lists_provider.dart';
+import 'package:chooose/widget/custom_app_bar.dart';
 import 'package:chooose/widget/item_card.dart';
 import 'package:chooose/widget/item_form.dart';
 import 'package:flutter/material.dart';
@@ -22,17 +23,7 @@ class ListPage extends ConsumerWidget {
     final max = items.firstOrNull?.ranking;
 
     return Scaffold(
-      appBar: AppBar(
-        foregroundColor: Colors.white,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/img/banner.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        backgroundColor: Colors.transparent,
+      appBar: CustomAppBar(
         title: Text(list.label),
         actions: [
           IconButton(
