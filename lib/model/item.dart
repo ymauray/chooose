@@ -11,6 +11,8 @@ class Item with _$Item {
     required final String label,
     required int ranking,
     required int score,
+    String? link,
+    String? description,
   }) = _Item;
 
   factory Item.fromJson(Map<String, Object?> json) => _$ItemFromJson(json);

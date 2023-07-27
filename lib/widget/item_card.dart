@@ -1,8 +1,10 @@
 import 'package:chooose/l10n/l10n_extension.dart';
 import 'package:chooose/model/item.dart';
 import 'package:chooose/provider/item_lists_provider.dart';
+import 'package:chooose/widget/item_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ItemCard extends ConsumerWidget {
   const ItemCard({
@@ -62,7 +64,35 @@ class ItemCard extends ConsumerWidget {
         ref.read(itemListsProvider.notifier).removeItem(label, item);
       },
       child: ListTile(
-        title: Text(item.label),
+        leading: IconButton(
+          icon: const Icon(Icons.link),
+          onPressed: (item.link ?? '').isNotEmpty
+              ? () async {
+                  final uri = Uri.parse(item.link!);
+                  if (!await launchUrl(uri)) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(context.t.couldNotOpenUrl),
+                      ),
+                    );
+                  }
+                }
+              : null,
+          color: Colors.blue,
+        ),
+        title: GestureDetector(
+          onTap: () async {
+            await showDialog<void>(
+              context: context,
+              builder: (context) {
+                return ItemForm(label, item: item);
+              },
+            );
+          },
+          child: Text(item.label),
+        ),
+        subtitle:
+            item.description == null ? null : Text(item.description ?? ''),
         trailing: Text(
           '${100 * item.ranking ~/ max} %',
           style: Theme.of(context).textTheme.titleLarge,

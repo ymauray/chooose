@@ -47,7 +47,6 @@ class ItemLists extends _$ItemLists {
   }
 
   FutureOr<void> addList(String text) async {
-    //state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final newLists = <ItemList>[
         ...state.value!,
@@ -58,7 +57,6 @@ class ItemLists extends _$ItemLists {
   }
 
   FutureOr<void> removeList(ItemList list) async {
-    //state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final newLists = state.value!.where((i) {
         return i.label != list.label;
@@ -67,12 +65,24 @@ class ItemLists extends _$ItemLists {
     });
   }
 
-  FutureOr<void> addItem(String label, String text) async {
-    //state = const AsyncValue.loading();
+  FutureOr<void> addItem(
+    String listLabel,
+    String label,
+    String description,
+    String link,
+  ) async {
     state = await AsyncValue.guard(() async {
       final newItems = [
-        ...state.value!.firstWhere((element) => element.label == label).items,
-        Item(label: text, score: 0, ranking: 1200)
+        ...state.value!
+            .firstWhere((element) => element.label == listLabel)
+            .items,
+        Item(
+          label: label,
+          description: description,
+          link: link,
+          score: 0,
+          ranking: 1200,
+        )
       ]..sort((a, b) {
           final rankingDiff = b.ranking.compareTo(a.ranking);
           if (rankingDiff != 0) {
@@ -82,8 +92,45 @@ class ItemLists extends _$ItemLists {
         });
 
       final newLists = [
-        ...state.value!.where((element) => element.label != label),
-        ItemList(label: label, items: newItems)
+        ...state.value!.where((element) => element.label != listLabel),
+        ItemList(label: listLabel, items: newItems)
+      ];
+
+      return await writeLists(newLists);
+    });
+  }
+
+  FutureOr<void> updateItem(
+    String listLabel,
+    Item oldItem,
+    String label,
+    String description,
+    String link,
+  ) async {
+    state = await AsyncValue.guard(() async {
+      final newItems = [
+        ...state.value!
+            .firstWhere((element) => element.label == listLabel)
+            .items
+            .where((element) => element.label != oldItem.label),
+        Item(
+          label: label,
+          description: description,
+          link: link,
+          score: oldItem.score,
+          ranking: oldItem.ranking,
+        )
+      ]..sort((a, b) {
+          final rankingDiff = b.ranking.compareTo(a.ranking);
+          if (rankingDiff != 0) {
+            return rankingDiff;
+          }
+          return a.label.compareTo(b.label);
+        });
+
+      final newLists = [
+        ...state.value!.where((element) => element.label != listLabel),
+        ItemList(label: listLabel, items: newItems)
       ];
 
       return await writeLists(newLists);
@@ -91,7 +138,6 @@ class ItemLists extends _$ItemLists {
   }
 
   Future<void> removeItem(String label, Item item) async {
-    //state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final newItems = state.value!
           .firstWhere((element) => element.label == label)
@@ -116,7 +162,6 @@ class ItemLists extends _$ItemLists {
   }
 
   FutureOr<void> refresh(String label, List<Item> items) async {
-    //state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       try {
         final sortedItems = List<Item>.from(items)
@@ -143,7 +188,6 @@ class ItemLists extends _$ItemLists {
   }
 
   FutureOr<void> reload() async {
-    // state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       return await writeLists(state.value!);
     });

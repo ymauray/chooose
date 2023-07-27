@@ -25,6 +25,10 @@ mixin _$Item {
   set ranking(int value) => throw _privateConstructorUsedError;
   int get score => throw _privateConstructorUsedError;
   set score(int value) => throw _privateConstructorUsedError;
+  String? get link => throw _privateConstructorUsedError;
+  set link(String? value) => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  set description(String? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +40,12 @@ abstract class $ItemCopyWith<$Res> {
   factory $ItemCopyWith(Item value, $Res Function(Item) then) =
       _$ItemCopyWithImpl<$Res, Item>;
   @useResult
-  $Res call({String label, int ranking, int score});
+  $Res call(
+      {String label,
+      int ranking,
+      int score,
+      String? link,
+      String? description});
 }
 
 /// @nodoc
@@ -55,6 +64,8 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
     Object? label = null,
     Object? ranking = null,
     Object? score = null,
+    Object? link = freezed,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       label: null == label
@@ -69,6 +80,14 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as int,
+      link: freezed == link
+          ? _value.link
+          : link // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -79,7 +98,12 @@ abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
       __$$_ItemCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String label, int ranking, int score});
+  $Res call(
+      {String label,
+      int ranking,
+      int score,
+      String? link,
+      String? description});
 }
 
 /// @nodoc
@@ -94,6 +118,8 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
     Object? label = null,
     Object? ranking = null,
     Object? score = null,
+    Object? link = freezed,
+    Object? description = freezed,
   }) {
     return _then(_$_Item(
       label: null == label
@@ -108,6 +134,14 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as int,
+      link: freezed == link
+          ? _value.link
+          : link // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -115,7 +149,12 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
 /// @nodoc
 @JsonSerializable()
 class _$_Item implements _Item {
-  _$_Item({required this.label, required this.ranking, required this.score});
+  _$_Item(
+      {required this.label,
+      required this.ranking,
+      required this.score,
+      this.link,
+      this.description});
 
   factory _$_Item.fromJson(Map<String, dynamic> json) => _$$_ItemFromJson(json);
 
@@ -125,10 +164,14 @@ class _$_Item implements _Item {
   int ranking;
   @override
   int score;
+  @override
+  String? link;
+  @override
+  String? description;
 
   @override
   String toString() {
-    return 'Item(label: $label, ranking: $ranking, score: $score)';
+    return 'Item(label: $label, ranking: $ranking, score: $score, link: $link, description: $description)';
   }
 
   @JsonKey(ignore: true)
@@ -149,7 +192,9 @@ abstract class _Item implements Item {
   factory _Item(
       {required final String label,
       required int ranking,
-      required int score}) = _$_Item;
+      required int score,
+      String? link,
+      String? description}) = _$_Item;
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$_Item.fromJson;
 
@@ -161,6 +206,12 @@ abstract class _Item implements Item {
   @override
   int get score;
   set score(int value);
+  @override
+  String? get link;
+  set link(String? value);
+  @override
+  String? get description;
+  set description(String? value);
   @override
   @JsonKey(ignore: true)
   _$$_ItemCopyWith<_$_Item> get copyWith => throw _privateConstructorUsedError;

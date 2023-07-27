@@ -3,6 +3,7 @@ import 'package:chooose/model/item_list.dart';
 import 'package:chooose/page/sort_page.dart';
 import 'package:chooose/provider/item_lists_provider.dart';
 import 'package:chooose/widget/item_card.dart';
+import 'package:chooose/widget/item_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,7 +36,12 @@ class ListPage extends ConsumerWidget {
         title: Text(list.label),
         actions: [
           IconButton(
-            onPressed: () async => await showForm(context, ref, list.label),
+            onPressed: () async => await showDialog<void>(
+              context: context,
+              builder: (context) {
+                return ItemForm(label);
+              },
+            ),
             icon: const Icon(Icons.add),
           ),
         ],
@@ -78,45 +84,6 @@ class ListPage extends ConsumerWidget {
         child: const Icon(Icons.play_arrow),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-    );
-  }
-
-  Future<void> showForm(
-    BuildContext context,
-    WidgetRef ref,
-    String label,
-  ) async {
-    await showDialog<void>(
-      context: context,
-      builder: (context) {
-        final controller = TextEditingController();
-        return AlertDialog(
-          title: Text(context.t.addElement),
-          content: TextField(
-            autofocus: true,
-            controller: controller,
-            decoration: InputDecoration(
-              hintText: context.t.name,
-            ),
-            textCapitalization: TextCapitalization.sentences,
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(context.t.cancel),
-            ),
-            TextButton(
-              onPressed: () {
-                ref
-                    .read(itemListsProvider.notifier)
-                    .addItem(label, controller.text);
-                Navigator.of(context).pop();
-              },
-              child: Text(context.t.add),
-            ),
-          ],
-        );
-      },
     );
   }
 }
