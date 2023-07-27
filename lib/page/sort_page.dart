@@ -27,32 +27,41 @@ class _ElevatedImageButton extends ConsumerWidget {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(32)),
         ),
+        padding: EdgeInsets.zero,
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              label,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-            if (description.isNotEmpty) ...[
-              const SizedBox(
-                height: 8,
-              ),
+      child: DecoratedBox(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/img/banner.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
               Text(
-                description,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(color: Colors.white),
+                label,
+                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
+              if (description.isNotEmpty) ...[
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  description,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Colors.white),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
