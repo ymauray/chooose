@@ -27,7 +27,7 @@ class App extends ConsumerWidget {
             if (prefs.getBool('onboarding') == null) {
               return const OnboardingPage();
             } else {
-              return TabPage();
+              return const TabPage();
             }
           } else {
             return Container();

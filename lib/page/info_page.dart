@@ -12,6 +12,9 @@ class InfoPage extends ConsumerWidget {
         title: const Text('Info'),
         actions: const [],
       ),
+      body: const Center(
+        child: Text('Info'),
+      ),
     );
   }
 }
