@@ -82,7 +82,9 @@ class SortPage extends ConsumerWidget {
     final reverse = Random().nextBool();
 
     final buttonA = _ElevatedImageButton(
-      description: sortStateNotifier.a.description ?? context.t.noDescription,
+      description: (sortStateNotifier.a.description ?? '').isEmpty
+          ? context.t.noDescription
+          : sortStateNotifier.a.description!,
       onPressed: () async {
         if (!sortStateNotifier.chooseA()) {
           await sortStateNotifier.finalize();
@@ -93,7 +95,9 @@ class SortPage extends ConsumerWidget {
     );
 
     final buttonB = _ElevatedImageButton(
-      description: sortStateNotifier.b.description ?? context.t.noDescription,
+      description: (sortStateNotifier.b.description ?? '').isEmpty
+          ? context.t.noDescription
+          : sortStateNotifier.b.description!,
       onPressed: () async {
         if (!sortStateNotifier.chooseB()) {
           await sortStateNotifier.finalize();
