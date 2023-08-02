@@ -61,12 +61,12 @@ class ItemForm extends ConsumerWidget {
           child: Text(context.t.cancel),
         ),
         TextButton(
-          onPressed: () {
+          onPressed: () async {
             if (nameController.text.isEmpty) {
               return;
             }
             if (item != null) {
-              ref.read(itemListsProvider.notifier).updateItem(
+              await ref.read(itemListsProvider.notifier).updateItem(
                     listLabel,
                     item!,
                     nameController.text,
@@ -74,7 +74,7 @@ class ItemForm extends ConsumerWidget {
                     linkController.text,
                   );
             } else {
-              ref.read(itemListsProvider.notifier).addItem(
+              await ref.read(itemListsProvider.notifier).addItem(
                     listLabel,
                     nameController.text,
                     descriptionController.text,

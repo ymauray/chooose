@@ -4,6 +4,7 @@ import 'package:chooose/widget/custom_app_bar.dart';
 import 'package:chooose/widget/list_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends ConsumerWidget {
@@ -18,9 +19,18 @@ class HomePage extends ConsumerWidget {
       appBar: CustomAppBar(
         actions: [
           IconButton(
-            onPressed: () async => showForm(context, ref),
+            onPressed: () async {
+              final customerInfo = await Purchases.getCustomerInfo();
+              final entitlements = customerInfo.entitlements.all;
+              final fullAccess = entitlements['full_access'];
+              if (fullAccess?.isActive ?? false || lists!.isEmpty) {
+                await showForm(context, ref);
+              } else {
+                await Navigator.of(context).pushNamed('/purchase');
+              }
+            },
             icon: const Icon(Icons.add),
-          )
+          ),
         ],
         title: Text(
           context.t.yourLists,

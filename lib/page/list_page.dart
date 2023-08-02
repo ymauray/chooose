@@ -27,12 +27,14 @@ class ListPage extends ConsumerWidget {
         title: Text(list.label),
         actions: [
           IconButton(
-            onPressed: () async => await showDialog<void>(
-              context: context,
-              builder: (context) {
-                return ItemForm(label);
-              },
-            ),
+            onPressed: () async {
+              await showDialog<void>(
+                context: context,
+                builder: (context) {
+                  return ItemForm(label);
+                },
+              );
+            },
             icon: const Icon(Icons.add),
           ),
         ],
