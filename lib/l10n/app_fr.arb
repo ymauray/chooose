@@ -24,5 +24,10 @@
     "onboarding3": "Envie de demander une poupée et une tablette au Père Noël ?",
     "onboarding4": "Ajouter ce que vous voulez dans l'app, et laissez-vous guider pour trier vos envies par ordre de priorité !",
     "onboardingLists": "Ajouter toutes vos listes de choix",
-    "onboardingElements": "Ajouter les éléments à trier"
+    "onboardingElements": "Ajouter les éléments à trier",
+    "retreivingInformations": "Récupération des informations...",
+    "premiumAccess":"Accès Premium",
+    "becomePremium": "Devenir Premium",
+    "createUnlimitedLists": "Créer un nombre illimité de listes",
+    "addUnlimidedElements": "Ajouter un nombre illimité d'éléments"
 }

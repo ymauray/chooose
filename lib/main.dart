@@ -9,14 +9,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await Purchases.setLogLevel(LogLevel.debug);
+  GoogleFonts.config.allowRuntimeFetching = false;
 
   if (Platform.isIOS) {
+    await Purchases.setLogLevel(LogLevel.debug);
     final configuration = PurchasesConfiguration(revenueCatApiKey);
     await Purchases.configure(configuration);
   }

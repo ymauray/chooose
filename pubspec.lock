@@ -437,6 +437,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  google_fonts:
+    dependency: "direct main"
+    description:
+      name: google_fonts
+      sha256: e20ff62b158b96f392bfc8afe29dee1503c94fbea2cbe8186fd59b756b8ae982
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.1.0"
   graphs:
     dependency: transitive
     description:
@@ -705,10 +713,10 @@ packages:
     dependency: "direct main"
     description:
       name: purchases_flutter
-      sha256: "2a021171c67d214821348a91eef8c66247426480f048cd8cf9d3f1defbfd7322"
+      sha256: ccdc00fa84cee2ab0aa1a17a34b9b08e4eaac22b37628c0690e63098bbe7d95d
       url: "https://pub.dev"
     source: hosted
-    version: "5.4.0"
+    version: "5.6.0"
   riverpod:
     dependency: transitive
     description:

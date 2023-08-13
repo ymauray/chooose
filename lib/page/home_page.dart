@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chooose/l10n/l10n_extension.dart';
 import 'package:chooose/provider/item_lists_provider.dart';
 import 'package:chooose/widget/custom_app_bar.dart';
@@ -20,13 +22,17 @@ class HomePage extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () async {
-              final customerInfo = await Purchases.getCustomerInfo();
-              final entitlements = customerInfo.entitlements.all;
-              final fullAccess = entitlements['full_access'];
-              if (fullAccess?.isActive ?? false || lists!.isEmpty) {
-                await showForm(context, ref);
+              if (Platform.isIOS) {
+                final customerInfo = await Purchases.getCustomerInfo();
+                final entitlements = customerInfo.entitlements.all;
+                final fullAccess = entitlements['full_access'];
+                if (fullAccess?.isActive ?? false || lists!.isEmpty) {
+                  await showForm(context, ref);
+                } else {
+                  await Navigator.of(context).pushNamed('/purchase');
+                }
               } else {
-                await Navigator.of(context).pushNamed('/purchase');
+                await showForm(context, ref);
               }
             },
             icon: const Icon(Icons.add),
