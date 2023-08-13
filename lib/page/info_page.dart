@@ -5,7 +5,6 @@ import 'package:chooose/widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
 
 class InfoPage extends ConsumerWidget {
   const InfoPage({super.key});
@@ -95,29 +94,6 @@ class InfoPage extends ConsumerWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            if (Platform.isIOS)
-              FutureBuilder(
-                future: Purchases.getCustomerInfo(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    final customerInfo = snapshot.data!;
-                    final entitlements = customerInfo.entitlements.all;
-                    final fullAccess = entitlements['full_access'];
-                    if (fullAccess?.isActive ?? false) {
-                      return ListTile(
-                        title: Text(
-                          context.t.premiumAccess,
-                          textAlign: TextAlign.center,
-                        ),
-                      );
-                    } else {
-                      return button;
-                    }
-                  } else {
-                    return Text(context.t.retreivingInformations);
-                  }
-                },
-              ),
             if (!Platform.isIOS) button,
           ],
         ),
